@@ -16,12 +16,16 @@ class StartQuiz extends StatelessWidget {
             width: 250,
           ),
           Container(
-            padding: EdgeInsets.only(top: 20),
-            child: ElevatedButton(
+            padding: EdgeInsets.only(top: 30),
+            child: OutlinedButton(
               onPressed: startQuiz,
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink.shade200),
-              child: Text(
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.pink.shade200,
+                  side: BorderSide(
+                    color: Colors.pink.shade200,
+                    width: 2,
+                  )),
+              child: const Text(
                 'Start Quiz',
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),

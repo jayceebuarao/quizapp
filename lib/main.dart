@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/start_screen.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -9,11 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World'),
-        ),
+        backgroundColor: Color.fromARGB(255, 7, 46, 27),
+        body: StartQuiz(),
       ),
     );
   }

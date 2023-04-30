@@ -14,6 +14,7 @@ class StartQuiz extends StatelessWidget {
           Image.asset(
             'assets/images/quiz-logo.png',
             width: 250,
+            color: Color.fromARGB(100, 255, 255, 255),
           ),
           Container(
             padding: EdgeInsets.only(top: 30),

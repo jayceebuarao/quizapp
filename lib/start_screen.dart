@@ -17,15 +17,17 @@ class StartQuiz extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(top: 30),
-            child: OutlinedButton(
+            child: OutlinedButton.icon(
               onPressed: startQuiz,
               style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.pink.shade200,
-                  side: BorderSide(
-                    color: Colors.pink.shade200,
-                    width: 2,
-                  )),
-              child: const Text(
+                foregroundColor: Colors.pink.shade200,
+                side: BorderSide(
+                  color: Colors.pink.shade200,
+                  width: 2,
+                ),
+              ),
+              icon: Icon(Icons.quiz_rounded),
+              label: const Text(
                 'Start Quiz',
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),

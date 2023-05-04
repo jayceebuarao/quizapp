@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartQuiz extends StatelessWidget {
   const StartQuiz(this.switchScreen, {super.key});
@@ -18,6 +19,17 @@ class StartQuiz extends StatelessWidget {
           ),
           const SizedBox(
             height: 50,
+          ),
+          Text(
+            'SUPER MARIOIOIOIOIO',
+            style: GoogleFonts.rubik(
+              color: Colors.pink.shade100,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
           OutlinedButton.icon(
             onPressed: switchScreen,

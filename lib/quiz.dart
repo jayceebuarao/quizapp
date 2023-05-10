@@ -23,6 +23,7 @@ class _QuizState extends State<Quiz> {
       setState(() {
         activeScreen = ResultsScreen(
           chosenAnswers: selectedAnswers,
+          resetQuiz: switchScreen,
         );
       });
     }
@@ -36,6 +37,7 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen() {
     setState(() {
+      if (selectedAnswers.isNotEmpty) selectedAnswers.clear();
       activeScreen = QuestionsScreen(
         onSelectAnswer: getSelectedAnswers,
       );

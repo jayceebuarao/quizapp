@@ -1,38 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:quizapp/data/questions.dart';
+import 'package:quizapp/index_format.dart';
 
 class QuestionsSummary extends StatelessWidget {
-  const QuestionsSummary(this.summaryData, {super.key});
+  const QuestionsSummary(this.summaryData, this.correctQuestions, {super.key});
 
   final List<Map<String, Object>> summaryData;
+  final Iterable<Map<String, Object>> correctQuestions;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: summaryData.map((data) {
-        return Row(
-          children: [
-            Text(((data['question_index'] as int) + 1).toString()),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(data['question'] as String),
-                  const SizedBox(
-                    height: 5,
+    return SizedBox(
+      height: 350,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: summaryData.map((data) {
+            return Row(
+              children: [
+                Index(
+                  data: data,
+                  correctQuestions: correctQuestions,
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        data['question'] as String,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            'Your Answer:',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            data['user_answer'] as String,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(children: [
+                        const Text(
+                          'Correct Answer:',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Text(
+                          data['correct_answer'] as String,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ]),
+                      const SizedBox(
+                        height: 30,
+                      )
+                    ],
                   ),
-                  Text(data['user_answer'] as String),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(data['correct_answer'] as String),
-                ],
-              ),
-            )
-          ],
-        );
-      }).toList(),
+                )
+              ],
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }

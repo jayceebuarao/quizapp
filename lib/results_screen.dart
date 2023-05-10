@@ -1,9 +1,4 @@
-import 'dart:ffi';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:quizapp/data/questions.dart';
 import 'package:quizapp/questions_summary.dart';
 
@@ -11,8 +6,10 @@ class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
     super.key,
     required this.chosenAnswers,
+    required this.resetQuiz,
   });
 
+  final void Function() resetQuiz;
   final List<String> chosenAnswers;
 
   List<Map<String, Object>> getSummaryData() {
@@ -34,9 +31,10 @@ class ResultsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
-    final numCorrectQuestions = summaryData.where((data) {
+    final correctQuestions = summaryData.where((data) {
       return data['user_answer'] == data['correct_answer'];
-    }).length;
+    });
+    final numCorrectQuestions = correctQuestions.length;
 
     return SizedBox(
       width: double.infinity,
@@ -47,15 +45,22 @@ class ResultsScreen extends StatelessWidget {
           children: [
             Text(
               'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+              style: const TextStyle(color: Colors.white),
             ),
             const SizedBox(
               height: 30,
             ),
-            QuestionsSummary(summaryData),
+            QuestionsSummary(summaryData, correctQuestions),
             const SizedBox(
               height: 30,
             ),
-            TextButton(onPressed: () {}, child: Text('Restart Quiz'))
+            TextButton(
+              onPressed: resetQuiz,
+              child: const Text(
+                'Restart Quiz',
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           ],
         ),
       ),

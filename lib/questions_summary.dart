@@ -15,53 +15,65 @@ class QuestionsSummary extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: summaryData.map((data) {
-            return Row(
+            return Column(
               children: [
-                Index(
-                  data: data,
-                  correctQuestions: correctQuestions,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Index(
+                      data: data,
+                      correctQuestions: correctQuestions,
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(left: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              data['question'] as String,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 18),
+                              textAlign: TextAlign.left,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                const Text(
+                                  'Your Answer:',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 255, 236, 29)),
+                                ),
+                                Text(
+                                  data['user_answer'] as String,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(children: [
+                              const Text(
+                                'Correct Answer:',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 90, 215, 98)),
+                              ),
+                              Text(
+                                data['correct_answer'] as String,
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            ]),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        data['question'] as String,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          const Text(
-                            'Your Answer:',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            data['user_answer'] as String,
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(children: [
-                        const Text(
-                          'Correct Answer:',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          data['correct_answer'] as String,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ]),
-                      const SizedBox(
-                        height: 30,
-                      )
-                    ],
-                  ),
+                const SizedBox(
+                  height: 30,
                 )
               ],
             );

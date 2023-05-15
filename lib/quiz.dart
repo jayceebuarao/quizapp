@@ -48,7 +48,7 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 5, 41, 14),
+        backgroundColor: const Color.fromARGB(255, 15, 41, 63),
         body: activeScreen,
       ),
     );
